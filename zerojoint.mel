@@ -27,7 +27,7 @@ proc makeGroup ( string $targetJoint ) {
     (`getAttr ($groupName + ".rotateX")` + `getAttr ($targetJoint + ".rotateX")`)
     (`getAttr ($groupName + ".rotateY")` + `getAttr ($targetJoint + ".rotateY")`)
     (`getAttr ($groupName + ".rotateZ")` + `getAttr ($targetJoint + ".rotateZ")`);
-  setAttr $targetJoint + ".rotate" 0 0 0;
+  setAttr ($targetJoint + ".rotate") 0 0 0;
 }
 
 global proc zeroJoint() {
