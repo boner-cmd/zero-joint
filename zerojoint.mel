@@ -13,15 +13,25 @@ proc int vfySelection () {
   return 0;
 }
 
+proc parentGroup ( string $groupEx, string $targetEx ) {
+  // need to check for and handle multiple parents
+  $tExParent = `listRelatives -p $targetEx`;
+  if ( size($tExParent) == 0 ) {
+    parent -w $groupEx;
+  } else if (size($tExParent) > 1) {
+    print "More than one parent.\n"
+  } else {
+    parent $groupEx $tExParent;
+  }
+}
+
 proc makeGroup ( string $targetJoint ) {
   $groupName = $targetJoint + "_zero";
   group -em -n $groupName;
-  // need to check for and handle multiple parents
-  $tjParent = `listRelatives -p $targetJoint`;
   parent $groupName $targetJoint;
   setAttr ($groupName + ".translate") 0 0 0;
   setAttr ($groupName + ".rotate") 0 0 0;
-  parent $groupName $tjParent;
+  parentGroup($groupName,$targetJoint);
   parent $targetJoint $groupName;
   setAttr ($groupName + ".rotate")
     (`getAttr ($groupName + ".rotateX")` + `getAttr ($targetJoint + ".rotateX")`)
