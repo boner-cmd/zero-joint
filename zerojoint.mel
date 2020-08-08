@@ -19,7 +19,7 @@ proc parentGroup ( string $groupEx, string $targetEx ) {
   if ( size($tExParent) == 0 ) {
     parent -w $groupEx;
   } else if (size($tExParent) > 1) {
-    print "More than one parent.\n"
+    print "More than one parent.\n";
   } else {
     parent $groupEx $tExParent;
   }
