@@ -33,7 +33,7 @@ proc makeGroup ( string $targetJoint ) {
 global proc zeroJoint() {
   if ( vfySelection() == 1) {
     $parentJoint = `ls -sl`;
-    makeGroup($parentJoint);
+    makeGroup($parentJoint[0]);
     $childrenJoints = `listRelatives -type joint -ad $parentJoint`;
     for ( $childJoint in $childrenJoints ) makeGroup($childJoint);
   }
