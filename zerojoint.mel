@@ -30,13 +30,15 @@ proc makeGroup ( string $targetJoint ) {
   group -em -n $groupName;
   parent $groupName $targetJoint;
   setAttr ($groupName + ".translate") 0 0 0;
-  setAttr ($groupName + ".rotate") 0 0 0;
+  
   parentGroup($groupName,$targetJoint);
   parent $targetJoint $groupName;
-  setAttr ($groupName + ".rotate")
-    (`getAttr ($groupName + ".rotateX")` + `getAttr ($targetJoint + ".rotateX")`)
-    (`getAttr ($groupName + ".rotateY")` + `getAttr ($targetJoint + ".rotateY")`)
-    (`getAttr ($groupName + ".rotateZ")` + `getAttr ($targetJoint + ".rotateZ")`);
+  setAttr ($targetJoint + ".jointOrient")
+  
+    (`getAttr ($targetJoint + ".rotateX")` + `getAttr ($targetJoint + ".jointOrientX")`)
+    (`getAttr ($targetJoint + ".rotateY")` + `getAttr ($targetJoint + ".jointOrientY")`)
+    (`getAttr ($targetJoint + ".rotateZ")` + `getAttr ($targetJoint + ".jointOrientZ")`);
+
   setAttr ($targetJoint + ".rotate") 0 0 0;
 }
 
