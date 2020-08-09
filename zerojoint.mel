@@ -37,12 +37,12 @@ proc makeGroup ( string $targetJoint ) {
   string $grpNameRotY = ($groupName + ".rotateY");
   string $grpNameRotZ = ($groupName + ".rotateZ");
   // invalid use of type getAttr
-  float $grpRotX = getAttr $grpNameRotX;
-  float $grpRotY = getAttr $grpNameRotY;
-  float $grpRotZ = getAttr $grpNameRotZ;
-  float $tgtRotX = getAttr ($targetJoint + ".rotateX");
-  float $tgtRotY = getAttr ($targetJoint + ".rotateY");
-  float $tgtRotZ = getAttr ($targetJoint + ".rotateZ");
+  float $grpRotX = `getAttr $grpNameRotX`;
+  float $grpRotY = `getAttr $grpNameRotY`;
+  float $grpRotZ = `getAttr $grpNameRotZ`;
+  float $tgtRotX = `getAttr ($targetJoint + ".rotateX")`;
+  float $tgtRotY = `getAttr ($targetJoint + ".rotateY")`;
+  float $tgtRotZ = `getAttr ($targetJoint + ".rotateZ")`;
   setAttr $grpNameRotX ($grpRotX + $tgtRotX);
   setAttr $grpNameRotY ($grpRotY + $tgtRotY);
   setAttr $grpNameRotZ ($grpRotZ + $tgtRotZ);
