@@ -33,10 +33,16 @@ proc makeGroup ( string $targetJoint ) {
   setAttr ($groupName + ".rotate") 0 0 0;
   parentGroup($groupName,$targetJoint);
   parent $targetJoint $groupName;
+  float $grpRotX = getAttr ($groupName + ".rotateX");
+  float $grpRotY = getAttr ($groupName + ".rotateY");
+  float $grpRotZ = getAttr ($groupName + ".rotateZ");
+  float $tgtRotX = getAttr ($targetJoint + ".rotateX");
+  float $tgtRotY = getAttr ($targetJoint + ".rotateY");
+  float $tgtRotZ = getAttr ($targetJoint + ".rotateZ");
   setAttr ($groupName + ".rotate")
-    (`getAttr ($groupName + ".rotateX")` + `getAttr ($targetJoint + ".rotateX")`)
-    (`getAttr ($groupName + ".rotateY")` + `getAttr ($targetJoint + ".rotateY")`)
-    (`getAttr ($groupName + ".rotateZ")` + `getAttr ($targetJoint + ".rotateZ")`);
+    ($grpRotX + $tgtRotX)
+    ($grpRotY + $tgtRotY)
+    ($grpRotZ + $tgtRotZ);
   setAttr ($targetJoint + ".rotate") 0 0 0;
 }
 
