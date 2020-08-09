@@ -27,7 +27,7 @@ proc parentGroup ( string $groupEx, string $targetEx ) {
 
 proc makeGroup ( string $targetJoint ) {
   $groupName = $targetJoint + "_zero";
-  group -em -n -w $groupName;
+  group -em -w -n $groupName;
   parent $groupName $targetJoint;
   setAttr ($groupName + ".translate") 0 0 0;
   setAttr ($groupName + ".rotate") 0 0 0;
